@@ -1,0 +1,15 @@
+{% extends 'school/base_dashboard.html' %}
+
+{% block title %}Subject List{% endblock %}
+
+{% block content %}
+<h1>Subject List</h1>
+{% if user.role == 'admin' %}
+<a href="{% url 'subject_create' %}">Create New Subject</a>
+{% endif %}
+<ul>
+    {% for subject in subjects %}
+        <li>{{ subject.name }} - {{ subject.sub_teacher }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

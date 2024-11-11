@@ -1,0 +1,21 @@
+{% extends 'school/base_dashboard.html' %}
+
+{% block title %}Your Timetable{% endblock %}
+
+{% block content %}
+<h1>Your Timetable</h1>
+<table>
+    <tr>
+        <th>Subject</th>
+        <th>Time Slot</th>
+        <th>Date</th>
+    </tr>
+    {% for entry in timetable %}
+    <tr>
+        <td>{{ entry.subject }}</td>
+        <td>{{ entry.time_slot }}</td>
+        <td>{{ entry.date }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

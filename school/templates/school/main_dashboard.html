@@ -1,0 +1,30 @@
+{% extends 'school/base_dashboard.html' %}
+
+{% block title %}{{ user.first_name }}'s Dashboard{% endblock %}
+
+{% block content %}
+    <div class="confirmation-box">
+        <h2>Welcome, {{ user.first_name }}!</h2>
+        <p>Your role: {{ user.role }}</p>
+
+        {% if user.role == 'student' %}
+            <h3>Student Dashboard</h3>
+            <p><strong>Student ID:</strong> {{ user.username }}</p>
+            <p><strong>Department:</strong> Computer Science</p>
+            <p class="success">You can enroll in subjects and check your attendance.</p>
+
+        {% elif user.role == 'teacher' %}
+            <h3>Teacher Dashboard</h3>
+            <p><strong>Assigned Subjects:</strong> {{subject.name}}</p>
+            <p class="success">You can manage your classes and update course materials.</p>
+
+        {% elif user.role == 'admin' %}
+            <h3>Admin Dashboard</h3>
+            <p class="success">You can manage subjects, classes, and student enrollments.</p>
+
+        {% else %}
+            <h3>Unknown Role</h3>
+            <p class="error">Your role is not recognized. Please contact support.</p>
+        {% endif %}
+    </div>
+{% endblock %}

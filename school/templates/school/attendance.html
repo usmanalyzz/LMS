@@ -1,0 +1,22 @@
+{% extends 'school/base_dashboard.html' %}
+
+{% block title %}Attendance Records{% endblock %}
+
+{% block content %}
+<h1>Attendance Records</h1>
+{% for record in attendance_records %}
+    <h2>{{ record.class.subject.name }} - {{ record.class.class_name }}</h2>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Status</th>
+        </tr>
+        {% for attendance in record.attendance %}
+        <tr>
+            <td>{{ attendance.date }}</td>
+            <td>{{ attendance.status|yesno:"Present,Absent" }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endfor %}
+{% endblock %}

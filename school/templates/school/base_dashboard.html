@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Dashboard{% ```html
+    {% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="header">
+        <div class="header-left">
+            <div>LMS</div>
+            <div>Portal</div>
+            <div>Website</div>
+        </div>
+        <div class="header-right">
+            <div>{{ user.role }}</div>
+            <div class="user-dropdown">
+                <div class="user-name">{{ user.first_name }}</div>
+                <div class="dropdown-content">
+                    <a href="{% url 'logout' %}">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main">
+        <div class="sidebar">
+        <img src="/media/images/logo.png" alt="University Logo" />
+        <ul>
+            {% if user.role == 'student' %}
+            <li><a href="{% url 'subject_list' %}">Subject List</a></li>
+            <li><a href="{% url 'enrollment' %}">Enroll in Subjects</a></li>
+            <li><a href="{% url 'attendance' %}">Record Attendance</a></li>
+            <li><a href="{% url 'timetable' %}">View Timetable</a></li>
+            {% elif user.role == 'teacher' %}
+                <li><a href="{% url 'teacher_attendance' %}">View Attendance</a></li>
+            {% elif user.role == 'admin' %}
+                <li><a href="{% url 'class_list' %}">Manage Classes</a></li>
+                <li><a href="{% url 'subject_list' %}">Subject List</a></li>
+                <li><a href="{% url 'timetable' %}">View Timetable</a></li>
+            {% endif %}
+        </ul>
+        <p style="font-size: 10px; text-align: center; margin-top: 20px">
+            Powered by Odoo
+        </p>
+    </div>
+    <div style="display:flex;display: flex;
+                justify-content: center;
+                /* align-items: center; */
+                width: 100%;
+                margin-top: 2rem;">
+        <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+    </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+{% extends 'school/base_dashboard.html' %}
+
+{% block title %}Class List{% endblock %}
+
+{% block content %}
+<h1>Class List</h1>
+<a href="{% url 'class_create' %}">Create New Class</a>
+<ul>
+    {% for class in classes %}
+        <li>{{ class.class_name }} - Capacity: {{ class.capacity }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
